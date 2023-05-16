@@ -13,6 +13,7 @@ import Login from './Login';
 import Register from './Register';
 import NotFound from './NotFound';
 import api from '../utils/api';
+import * as auth from '../utils/auth';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
   const [cardForDelete, setCardForDelete] = React.useState({});
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [isAuthSuccess, setIsAuthSuccess] = React.useState(false);
+  const [userData, setUserData] = useState({ password: '', email: '' });
   
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -103,6 +105,16 @@ function App() {
   
   function handleAddPlaceSubmit({ name, link }) {
     handleApiMethod(api.addCard.bind(api), { name, link }, (newCard) => setCards([newCard, ...cards]));
+  }
+
+  function handleRegister(password, email) {
+    auth.register(password, email)
+    .then(() => {
+
+    })
+    .catch(() => {
+
+    });
   }
 
   React.useEffect(() => {
