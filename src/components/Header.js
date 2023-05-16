@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route, Routes, Link } from 'react-router-dom';
 import headerLogo from '../images/header-logo.svg';
 
 function Header() {
@@ -9,6 +10,9 @@ function Header() {
           src={headerLogo}
           alt="Логотип Mesto"
         />
+        <Routes>
+          <Route path="/sign-in" element={<Link className="header__link" to="/sign-up">Регистрация</Link>} />
+        </Routes>
       </header>
   );
 }
