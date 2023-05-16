@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
@@ -7,6 +8,7 @@ import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
 import AddPlacePopup from './AddPlacePopup';
 import ConfirmPopup from './ConfirmPopup';
+import ProtectedRoute from './ProtectedRoute';
 import api from '../utils/api';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
@@ -22,6 +24,7 @@ function App() {
   const [cards, setCards] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
   const [cardForDelete, setCardForDelete] = React.useState({});
+  const [loggedIn, setLoggedIn] = React.useState(false);
   
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -110,15 +113,24 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <Header />
-      <Main 
-        onEditProfile={handleEditProfileClick} 
-        onAddPlace={handleAddPlaceClick} 
-        onEditAvatar={handleEditAvatarClick} 
-        onCardClick={handleCardClick} 
-        onCardLike={handleCardLike} 
-        onConfirm={handleConfirmClick} 
-        cards={cards}
+      <Routes>
+      <Route 
+        path="/" 
+        element={
+        <ProtectedRoute 
+          element={Main} 
+          loggedIn={loggedIn} 
+          onEditProfile={handleEditProfileClick} 
+          onAddPlace={handleAddPlaceClick} 
+          onEditAvatar={handleEditAvatarClick} 
+          onCardClick={handleCardClick} 
+          onCardLike={handleCardLike} 
+          onConfirm={handleConfirmClick} 
+          cards={cards}
+        />
+        } 
       />
+      </Routes>
       <Footer />
       <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} isLoading={isLoading} />
       <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit} isLoading={isLoading} />
