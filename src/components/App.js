@@ -11,6 +11,7 @@ import ConfirmPopup from './ConfirmPopup';
 import { ProtectedRoute } from './ProtectedRoute';
 import Login from './Login';
 import Register from './Register';
+import NotFound from './NotFound';
 import api from '../utils/api';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
@@ -135,6 +136,7 @@ function App() {
       />
       <Route path="/sign-in" element={<Login />} />
       <Route path="/sign-up" element={<Register />} />
+      <Route path="*" element={<NotFound />} />
       </Routes>
       {loggedIn && <Footer />}
       <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} isLoading={isLoading} />
