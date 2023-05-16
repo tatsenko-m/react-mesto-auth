@@ -27,6 +27,7 @@ function App() {
   const [isLoading, setIsLoading] = React.useState(false);
   const [cardForDelete, setCardForDelete] = React.useState({});
   const [loggedIn, setLoggedIn] = React.useState(false);
+  const [isAuthSuccess, setIsAuthSuccess] = React.useState(false);
   
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
