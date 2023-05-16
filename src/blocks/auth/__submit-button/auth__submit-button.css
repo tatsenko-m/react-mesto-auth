@@ -25,7 +25,7 @@
   cursor: pointer;
 }
 
-@media screen and (max-height: 620px) {
+@media screen and (max-height: 660px) {
   .auth__submit-button {
     margin-top: calc(100vh - 500px);
   }
