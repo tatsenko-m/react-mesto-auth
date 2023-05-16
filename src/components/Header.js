@@ -12,6 +12,7 @@ function Header() {
         />
         <Routes>
           <Route path="/sign-in" element={<Link className="header__link" to="/sign-up">Регистрация</Link>} />
+          <Route path="/sign-up" element={<Link className="header__link" to="/sign-in">Войти</Link>} />
         </Routes>
       </header>
   );
