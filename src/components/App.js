@@ -121,7 +121,7 @@ function App() {
     })
     .catch((err) => {
       setIsAuthSuccess(false);
-      alert(err);
+      console.log(err);
     })
     .finally(() => {
       setIsInfoTooltipOpen(true);
@@ -142,7 +142,7 @@ function App() {
     .catch((err) => {
       setIsAuthSuccess(false);
       setIsInfoTooltipOpen(true);
-      alert(err);
+      console.log(err);
     });
   }
 
