@@ -182,7 +182,7 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <Header loggedIn={loggedIn} onSignOut={handleSignOut} email={userData.email} />
+      <Header onSignOut={handleSignOut} email={userData.email} />
       <Routes>
       <Route 
         path="/" 
