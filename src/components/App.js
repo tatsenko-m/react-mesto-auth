@@ -146,6 +146,24 @@ function App() {
     });
   }
 
+  function handleTokenCheck() {
+    const token = localStorage.getItem('token');
+    if (token) {
+      auth.getContent(token)
+        .then((user) => {
+          setLoggedIn(true);
+          setUserData({ email: user.email });
+          const url = location.state?.backUrl || '/';
+          navigate(url);
+        })
+        .catch((err) => alert(err));
+    }
+  }
+
+  React.useEffect(() => {
+    handleTokenCheck();
+  }, []);
+
   React.useEffect(() => {
     Promise.all([api.getUserInfo(), api.getCardList()])
     .then(([user, cards]) => {

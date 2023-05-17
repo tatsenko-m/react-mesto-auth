@@ -30,7 +30,7 @@ export const authorize = (password, email) => {
   .then(handleResponse);
 };
 
-export const checkToken = (token) => {
+export const getContent = (token) => {
     return fetch(`${BASE_URL}/users/me`, {
       method: 'GET',
       headers: {
