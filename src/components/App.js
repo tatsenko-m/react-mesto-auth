@@ -32,7 +32,7 @@ function App() {
   const [cardForDelete, setCardForDelete] = React.useState({});
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [isAuthSuccess, setIsAuthSuccess] = React.useState(false);
-  const [userData, setUserData] = useState({ password: '', email: '' });
+  // const [userData, setUserData] = useState({ password: '', email: '' });
 
   const navigate = useNavigate();
   

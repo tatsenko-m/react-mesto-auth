@@ -12,10 +12,11 @@ function InfoTooltip({ isOpen, onClose, isAuthSuccess }) {
           onClick={onClose}
       ></button>
       <img
-        src={isAuthSuccess ? successImage : failImage}
-        alt="Иконка статуса"
+        src={isAuthSuccess ? successImage : failImage} 
+        alt="Иконка статуса" 
+        className="popup__info-tooltip-icon"
       />
-      <p className="popup__info-tooltip">
+      <p className="popup__info-tooltip-text">
         {isAuthSuccess ? 'Вы успешно зарегистрировались!' : 'Что-то пошло не так! Попробуйте ещё раз.'}
       </p>
       </div>
