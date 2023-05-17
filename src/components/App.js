@@ -88,7 +88,7 @@ function App() {
       closeAllPopups();
     })
     .catch((err) => alert(err))
-    .finally(() => setIsLoading(false));;
+    .finally(() => setIsLoading(false));
   }
 
   function handleApiMethod(apiMethod, args, onSuccess) {
@@ -114,6 +114,8 @@ function App() {
   }
 
   function handleRegister(password, email) {
+    setIsLoading(true);
+
     auth.register(password, email)
     .then(() => {
       setIsAuthSuccess(true);
@@ -124,11 +126,14 @@ function App() {
       console.log(err);
     })
     .finally(() => {
+      setIsLoading(false);
       setIsInfoTooltipOpen(true);
     });
   }
 
   function handleLogin(password, email) {
+    setIsLoading(true);
+
     auth.authorize(password, email)
     .then(data => {
       if (data.token) {
@@ -143,7 +148,8 @@ function App() {
       setIsAuthSuccess(false);
       setIsInfoTooltipOpen(true);
       console.log(err);
-    });
+    })
+    .finally(() => setIsLoading(false));
   }
 
   function handleTokenCheck() {
@@ -200,8 +206,8 @@ function App() {
         />
         } 
       />
-      <Route path="/sign-in" element={<Login onLogin={handleLogin} />} />
-      <Route path="/sign-up" element={<Register onRegister={handleRegister} />} />
+      <Route path="/sign-in" element={<Login onLogin={handleLogin} isLoading={isLoading} submitButtonText="Войти" loadingText="Входим..." />} />
+      <Route path="/sign-up" element={<Register onRegister={handleRegister} isLoading={isLoading} submitButtonText="Зарегистрироваться" loadingText="Регистрируемся..." />} />
       <Route path="*" element={<NotFound />} />
       </Routes>
       {loggedIn && <Footer />}
