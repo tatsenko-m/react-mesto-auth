@@ -1,5 +1,7 @@
 .popup__info-tooltip-icon {
-  display: block;
   width: 120px;
+  height: 120px;
+  background-size: contain;
+  background-repeat: no-repeat;
   margin: 60px 155px 32px;
 }
