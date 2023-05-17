@@ -160,6 +160,13 @@ function App() {
     }
   }
 
+  function handleSignOut() {
+    localStorage.removeItem('token');
+    setUserData({ email: '' });
+    setLoggedIn(false);
+    navigate('/sign-in');
+  }
+
   React.useEffect(() => {
     handleTokenCheck();
   }, []);
@@ -175,7 +182,7 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <Header email={userData.email} />
+      <Header loggedIn={loggedIn} onSignOut={handleSignOut} email={userData.email} />
       <Routes>
       <Route 
         path="/" 
