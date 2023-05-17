@@ -152,7 +152,7 @@ function App() {
       auth.getContent(token)
         .then((user) => {
           setLoggedIn(true);
-          setUserData({ email: user.email });
+          setUserData({ email: user.data.email });
           const url = location.state?.backUrl || '/';
           navigate(url);
         })
