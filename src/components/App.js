@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
@@ -32,9 +32,10 @@ function App() {
   const [cardForDelete, setCardForDelete] = React.useState({});
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [isAuthSuccess, setIsAuthSuccess] = React.useState(false);
-  // const [userData, setUserData] = useState({ password: '', email: '' });
+  const [userData, setUserData] = useState({ email: '' });
 
   const navigate = useNavigate();
+  const location = useLocation();
   
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -127,6 +128,24 @@ function App() {
     });
   }
 
+  function handleLogin(password, email) {
+    auth.authorize(password, email)
+    .then(data => {
+      if (data.token) {
+        localStorage.setItem('token', data.token);
+        setLoggedIn(true);
+        setUserData({ email: email });
+        const url = location.state?.backUrl || '/';
+        navigate(url);
+      }
+    })
+    .catch((err) => {
+      setIsAuthSuccess(false);
+      setIsInfoTooltipOpen(true);
+      alert(err);
+    });
+  }
+
   React.useEffect(() => {
     Promise.all([api.getUserInfo(), api.getCardList()])
     .then(([user, cards]) => {
@@ -156,7 +175,7 @@ function App() {
         />
         } 
       />
-      <Route path="/sign-in" element={<Login />} />
+      <Route path="/sign-in" element={<Login onLogin={handleLogin} />} />
       <Route path="/sign-up" element={<Register onRegister={handleRegister} />} />
       <Route path="*" element={<NotFound />} />
       </Routes>
