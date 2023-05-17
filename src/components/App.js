@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
@@ -11,6 +11,7 @@ import ConfirmPopup from './ConfirmPopup';
 import { ProtectedRoute } from './ProtectedRoute';
 import Login from './Login';
 import Register from './Register';
+import InfoTooltip from './InfoTooltip';
 import NotFound from './NotFound';
 import api from '../utils/api';
 import * as auth from '../utils/auth';
@@ -23,6 +24,7 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
   const [isConfirmPopupOpen, setIsConfirmPopupOpen] = React.useState(false);
   const [isImagePopupOpen, setIsImagePopupOpen] = React.useState(false);
+  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({});
   const [currentUser, setCurrentUser] = React.useState({});
   const [cards, setCards] = React.useState([]);
@@ -31,6 +33,8 @@ function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [isAuthSuccess, setIsAuthSuccess] = React.useState(false);
   const [userData, setUserData] = useState({ password: '', email: '' });
+
+  const navigate = useNavigate();
   
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -60,6 +64,7 @@ function App() {
     setIsAddPlacePopupOpen(false);
     setIsConfirmPopupOpen(false);
     setIsImagePopupOpen(false);
+    setIsInfoTooltipOpen(false);
     setSelectedCard({});
   }
 
@@ -110,10 +115,15 @@ function App() {
   function handleRegister(password, email) {
     auth.register(password, email)
     .then(() => {
-
+      setIsAuthSuccess(true);
+      navigate('/sign-in');
     })
-    .catch(() => {
-
+    .catch((err) => {
+      setIsAuthSuccess(false);
+      alert(err);
+    })
+    .finally(() => {
+      setIsInfoTooltipOpen(true);
     });
   }
 
@@ -156,6 +166,7 @@ function App() {
       <ConfirmPopup isOpen={isConfirmPopupOpen} onClose={closeAllPopups} onCardDelete={handleCardDelete} card={cardForDelete} isLoading={isLoading} />
       <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} isLoading={isLoading} />
       <ImagePopup card={selectedCard} isOpen={isImagePopupOpen} onClose={closeAllPopups} />
+      <InfoTooltip isOpen={isInfoTooltipOpen} onClose={closeAllPopups} isAuthSuccess={isAuthSuccess} />
     </CurrentUserContext.Provider>
   );
 }
