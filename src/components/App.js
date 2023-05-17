@@ -206,8 +206,26 @@ function App() {
         />
         } 
       />
-      <Route path="/sign-in" element={<Login onLogin={handleLogin} isLoading={isLoading} submitButtonText="Войти" loadingText="Входим..." />} />
-      <Route path="/sign-up" element={<Register onRegister={handleRegister} isLoading={isLoading} submitButtonText="Зарегистрироваться" loadingText="Регистрируемся..." />} />
+      <Route path="/sign-in" element=
+        {
+          <Login 
+            onLogin={handleLogin} 
+            isLoading={isLoading} 
+            submitButtonText="Войти" 
+            loadingText="Входим..." 
+          />
+        } 
+      />
+      <Route path="/sign-up" element=
+        {
+          <Register 
+            onRegister={handleRegister} 
+            isLoading={isLoading} 
+            submitButtonText="Зарегистрироваться" 
+            loadingText="Регистрируемся..." 
+          />
+        } 
+      />
       <Route path="*" element={<NotFound />} />
       </Routes>
       {loggedIn && <Footer />}
