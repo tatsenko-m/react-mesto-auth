@@ -157,7 +157,7 @@ function App() {
         } 
       />
       <Route path="/sign-in" element={<Login />} />
-      <Route path="/sign-up" element={<Register />} />
+      <Route path="/sign-up" element={<Register onRegister={handleRegister} />} />
       <Route path="*" element={<NotFound />} />
       </Routes>
       {loggedIn && <Footer />}
