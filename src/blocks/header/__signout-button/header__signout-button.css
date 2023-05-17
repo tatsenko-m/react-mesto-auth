@@ -1,26 +1,24 @@
-.header__link {
+.header__signout-button {
+  background: none;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
   font-family: 'Inter', 'Arial', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
   text-align: right;
-  color: #FFFFFF;
+  color: #A9A9A9;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-decoration-line: none;
   opacity: 1;
   transition: opacity 1s;
   margin: 0;
   padding: 0;
+  align-self: flex-start;
 }
 
-.header__link:hover {
+.header__signout-button:hover {
   opacity: 0.6;
-}
-
-@media screen and (max-width: 768px) {
-  .header__link {
-    margin-right: 30px;
-  }
 }
