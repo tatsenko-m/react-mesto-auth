@@ -5,6 +5,7 @@
   font-size: 18px;
   line-height: 22px;
   text-align: right;
+  align-self: flex-start;
   color: #FFFFFF;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
