@@ -13,7 +13,7 @@
   opacity: 1;
   transition: opacity 1s;
   margin: 0;
-  padding: 0;
+  padding-top: 8px;
 }
 
 .header__link:hover {
