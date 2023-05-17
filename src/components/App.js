@@ -32,7 +32,7 @@ function App() {
   const [cardForDelete, setCardForDelete] = React.useState({});
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [isAuthSuccess, setIsAuthSuccess] = React.useState(false);
-  const [userData, setUserData] = useState({ email: '' });
+  const [userData, setUserData] = React.useState({ email: '' });
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -157,7 +157,7 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <Header />
+      <Header email={userData.email} />
       <Routes>
       <Route 
         path="/" 
