@@ -1,4 +1,12 @@
 .header__menu-bar {
   display: flex;
   justify-content: space-between;
+  padding-top: 8px;
+  margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .header__menu-bar {
+    margin-right: 30px;
+  }
 }
