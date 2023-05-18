@@ -36,7 +36,6 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar, isLoading }) {
         type="url"
         ref={inputRef}
         placeholder="Ссылка на картинку"
-        ondblclick="this.select()"
         required
       />
       <span className="popup__error" id="avatar-error"></span>
