@@ -2,7 +2,7 @@ import React from 'react';
 import successImage from '../images/success-image.svg';
 import failImage from '../images/fail-image.svg';
 
-function InfoTooltip({ isOpen, onClose, isAuthSuccess }) {
+function InfoTooltip({ isOpen, onClose, isAuthSuccess, successInfoTooltipText, failInfoTooltipText }) {
   const backgroundImage = isAuthSuccess ? `url(${successImage})` : `url(${failImage})`;
 
   React.useEffect(() => {
@@ -43,7 +43,7 @@ function InfoTooltip({ isOpen, onClose, isAuthSuccess }) {
         style={{ backgroundImage }}
       ></div>
       <p className="popup__info-tooltip-text">
-        {isAuthSuccess ? 'Вы успешно зарегистрировались!' : 'Что-то пошло не так! Попробуйте ещё раз.'}
+        {isAuthSuccess ? successInfoTooltipText : failInfoTooltipText}
       </p>
       </div>
     </div>

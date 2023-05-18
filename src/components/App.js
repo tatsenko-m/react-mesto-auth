@@ -236,7 +236,13 @@ function App() {
       <ConfirmPopup isOpen={isConfirmPopupOpen} onClose={closeAllPopups} onCardDelete={handleCardDelete} card={cardForDelete} isLoading={isLoading} />
       <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} isLoading={isLoading} />
       <ImagePopup card={selectedCard} isOpen={isImagePopupOpen} onClose={closeAllPopups} />
-      <InfoTooltip isOpen={isInfoTooltipOpen} onClose={closeAllPopups} isAuthSuccess={isAuthSuccess} />
+      <InfoTooltip 
+        isOpen={isInfoTooltipOpen} 
+        onClose={closeAllPopups} 
+        isAuthSuccess={isAuthSuccess} 
+        successInfoTooltipText="Вы успешно зарегистрировались!" 
+        failInfoTooltipText="Что-то пошло не так! Попробуйте ещё раз." 
+      />
     </CurrentUserContext.Provider>
   );
 }
